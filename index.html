@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Gravata</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div id="tela-inicio" class="tela ativa">
+        <h1>A Gravata</h1>
+        <p>De qual lado você está?</p>
+        <button class="btn-padrinhos" onclick="escolherTime('arrecadado_padrinhos')">🧔 Time Padrinhos</button>
+        <button class="btn-madrinhas" onclick="escolherTime('arrecadado_madrinhas')">👠 Time Madrinhas</button>
+    </div>
+
+    <div id="tela-jogo" class="tela">
+        <h2 id="titulo-time" style="color: #eab308;"></h2>
+        
+        <label>Código da Ficha</label>
+        <input type="text" id="input-token" placeholder="EX: A1B2" autocomplete="off">
+        
+        <label>Senha da Mala (3 dígitos)</label>
+        <input type="number" id="input-senha" placeholder="000" maxlength="3" oninput="this.value=this.value.slice(0,3)">
+        
+        <button id="btn-tentar" class="btn-acao">TENTAR ABRIR!</button>
+        <button onclick="voltarInicio()" style="background: transparent; border: 1px solid #555; color: #aaa; margin-top: 10px;">Voltar</button>
+        <div id="mensagem"></div>
+    </div>
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
