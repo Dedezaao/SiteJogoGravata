@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>A Gravata - Edição Master Builder</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    
+    <header class="wedding-header card ativa">
+        <h1 class="title-main">A Gravata</h1>
+        <p class="subtitle">Lua de Mel Gamificada</p>
+    </header>
+
+    <div id="tela-inicio" class="tela ativa card">
+        <p style="color: var(--text-muted); margin-bottom: 25px; text-align: center; font-weight: 600;">Selecione seu time e ajude a abrir a mala premiada!</p>
+        
+        <button class="btn-padrinhos" onclick="escolherTime('arrecadado_padrinhos')">🧔 Time Padrinhos</button>
+        <button class="btn-madrinhas" onclick="escolherTime('arrecadado_madrinhas')">👠 Time Madrinhas</button>
+    </div>
+
+    <div id="tela-jogo" class="tela card">
+        <h2 id="titulo-time" style="font-size: 2rem; font-weight: 800; margin-top: 0; margin-bottom: 35px; text-align: center; color: var(--gold-polish);"></h2>
+        
+        <div class="input-group">
+            <label for="input-token">Código da Ficha (4 Caracteres)</label>
+            <input type="text" id="input-token" placeholder="AA11" autocomplete="off" maxlength="4">
+        </div>
+        
+        <div class="input-group">
+            <label for="input-senha">Senha da Mala (3 Números)</label>
+            <input type="text" id="input-senha" placeholder="000" maxlength="3" autocomplete="off" inputmode="numeric">
+        </div>
+        
+        <button id="btn-tentar" class="btn-acao">💰 TENTAR ABRIR! 🔓</button>
+        
+        <button onclick="voltarInicio()" style="background: transparent; box-shadow: none; border: 1px solid var(--glass-border); color: var(--text-muted); margin-top: 25px; font-size: 1rem; padding: 15px;">Voltar</button>
+        
+        <div id="mensagem"></div>
+    </div>
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
