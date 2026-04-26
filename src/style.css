@@ -270,3 +270,276 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(40px);
 }
+
+/* =========================================
+   MODAL PREMIUM & ANIMAÇÕES DE SUSPENSE
+   ========================================= */
+.modal-premium {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(251, 250, 248, 0.4); /* Creme quase transparente */
+    backdrop-filter: blur(12px); /* Efeito Vidro Embaçado forte */
+    -webkit-backdrop-filter: blur(12px);
+    display: none; align-items: center; justify-content: center;
+    z-index: 9999;
+    opacity: 0; transition: opacity 0.4s ease;
+}
+
+.modal-premium.show {
+    display: flex; opacity: 1;
+}
+
+.modal-box {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 90%; max-width: 350px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-premium.show .modal-box { transform: scale(1); }
+
+.fase-container { display: none; flex-direction: column; align-items: center; }
+.fase-container.ativa { display: flex; animation: fadeIn 0.3s ease; }
+
+.modal-texto { color: var(--text-dark); font-size: 1.1rem; margin-top: 20px; }
+.pulse-text { animation: pulseText 1.5s infinite; letter-spacing: 1px; color: var(--sage-green); font-weight: 600;}
+
+/* O Cadeado Minimalista CSS */
+.lock-icon { position: relative; width: 60px; height: 80px; margin: 0 auto; }
+.shackle {
+    width: 40px; height: 30px;
+    border: 6px solid var(--border-color);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    margin: 0 auto;
+    position: relative; top: 6px;
+    transition: 0.3s;
+}
+.lock-body {
+    width: 60px; height: 45px;
+    background: var(--sage-green);
+    border-radius: 10px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px rgba(139, 157, 131, 0.4);
+    animation: pulseGlow 1.5s infinite alternate;
+}
+.keyhole {
+    width: 10px; height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+}
+.keyhole::after {
+    content: ''; position: absolute;
+    top: 8px; left: 2px; width: 6px; height: 8px;
+    background: #fff; clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+/* Modificadores do Cadeado */
+.lock-icon.success .shackle { transform: translateY(-10px); border-color: #10b981; }
+.lock-icon.success .lock-body { background: #10b981; animation: none; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4); }
+.lock-icon.error .shackle { border-color: #ef4444; }
+.lock-icon.error .lock-body { background: #ef4444; animation: shake 0.4s ease; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4); }
+
+.icon-result { font-size: 4rem; margin-bottom: 10px; }
+.btn-fechar-modal { margin-top: 25px; background: transparent; border: 2px solid var(--sage-green); color: var(--sage-green); }
+.btn-fechar-modal:hover { background: var(--sage-green); color: white; }
+
+@keyframes pulseGlow { from { box-shadow: 0 0 5px rgba(139,157,131,0.2); } to { box-shadow: 0 0 25px rgba(139,157,131,0.8); } }
+@keyframes pulseText { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+/* =========================================
+   ARENA DE BATALHA & CABO DE GUERRA
+   ========================================= */
+.arena-batalha { 
+    display: flex; justify-content: space-between; align-items: center; 
+    margin-bottom: 25px; position: relative; padding: 0 10px;
+}
+
+.competidor { 
+    display: flex; flex-direction: column; align-items: center; 
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    position: relative; width: 30%;
+}
+
+.emoji-avatar { 
+    font-size: 4.5rem; 
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1)); 
+    transition: all 0.6s ease; 
+}
+
+.nome-time { 
+    font-weight: 800; color: var(--text-dark); 
+    margin-top: 10px; text-transform: uppercase; 
+    letter-spacing: 1px; font-size: 0.75rem; 
+}
+
+.vs-badge { 
+    font-weight: 900; font-size: 1.8rem; 
+    color: #cca35e; font-style: italic; 
+    text-shadow: 0 2px 10px rgba(204, 163, 94, 0.3); 
+}
+
+/* Barra Estilo Jogo de Luta */
+.tug-of-war-container { 
+    width: 100%; height: 25px; border-radius: 20px; 
+    display: flex; overflow: hidden; 
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.1); 
+    border: 2px solid var(--border-color); 
+    background: #eee;
+}
+
+.bar-padrinhos { 
+    height: 100%; background: var(--sage-green); 
+    transition: width 1s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+
+.bar-madrinhas { 
+    height: 100%; background: var(--blue-grey); 
+    transition: width 1s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+
+.placar-valores { 
+    display: flex; justify-content: space-between; 
+    margin-top: 10px; font-weight: 900; font-size: 1.2rem;
+}
+
+/* O Segredo: Classes de Vitória e Derrota */
+.coroa { 
+    position: absolute; top: -35px; font-size: 2.2rem; 
+    animation: flutuarCoroa 2s infinite ease-in-out; 
+    display: none; z-index: 10; 
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+}
+
+.competidor.liderando .coroa { display: block; }
+.competidor.liderando .emoji-avatar { 
+    transform: scale(1.3); 
+    animation: dancinhaVitoria 1s infinite alternate ease-in-out; 
+    filter: drop-shadow(0 0 20px rgba(204, 163, 94, 0.6)); /* Aura Dourada */
+}
+
+.competidor.perdendo .emoji-avatar { 
+    filter: grayscale(100%) opacity(0.5); 
+    transform: scale(0.8); 
+}
+
+/* Animações Keyframes */
+@keyframes dancinhaVitoria { 
+    0% { transform: scale(1.3) rotate(-8deg); } 
+    100% { transform: scale(1.3) rotate(8deg); } 
+}
+@keyframes flutuarCoroa { 
+    0%, 100% { transform: translateY(0) rotate(-10deg); } 
+    50% { transform: translateY(-12px) rotate(10deg); } 
+}
+
+/* =========================================
+   EFEITOS PREMIUM DA PÁGINA INICIAL & PLACAR
+   ========================================= */
+
+/* Cores específicas para as Madrinhas */
+.btn-madrinhas { background-color: var(--blue-grey); }
+.btn-madrinhas:hover { background-color: #72879e; }
+
+/* Efeito de Brilho Dinâmico (Glow & Shine) */
+.btn-glow {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate3d(0, 0, 0);
+}
+
+.btn-glow::after {
+    content: ''; position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg) translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-glow:hover::after { transform: rotate(45deg) translateY(100%); }
+.btn-padrinhos:hover { box-shadow: 0 0 20px rgba(139, 157, 131, 0.6); }
+.btn-madrinhas:hover { box-shadow: 0 0 20px rgba(135, 155, 176, 0.6); }
+
+/* Animação do +R$ 30 pipocando na Arena */
+.score-popup {
+    position: absolute;
+    top: -20px;
+    color: #10b981;
+    font-weight: 900;
+    font-size: 1.8rem;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    animation: floatUpAndFade 2s ease-out forwards;
+    z-index: 100;
+    pointer-events: none;
+}
+
+@keyframes floatUpAndFade {
+    0% { transform: translateY(0) scale(0.5); opacity: 0; }
+    20% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+    100% { transform: translateY(-80px) scale(1); opacity: 0; }
+}
+
+/* =========================================
+   TELA DE TENTATIVA - ELEMENTOS DE JOGO
+   ========================================= */
+.team-header-container { text-align: center; margin-bottom: 20px; }
+
+.team-avatar-large { 
+    font-size: 3.5rem; 
+    display: inline-block; 
+    animation: floatAvatar 3s ease-in-out infinite; 
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,0.1));
+}
+
+.mini-placar-badge {
+    display: inline-block;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--sage-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    margin-top: 5px;
+}
+
+.input-game {
+    background-color: rgba(243, 244, 246, 0.5) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+}
+.input-game:focus {
+    background-color: #fff !important;
+    border-color: var(--sage-green) !important;
+    box-shadow: 0 0 0 3px rgba(139, 157, 131, 0.2), inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.input-cofre {
+    font-size: 2.2rem !important;
+    letter-spacing: 18px !important;
+    font-weight: 900 !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    padding-left: 25px !important; /* Compensa o letter-spacing para centralizar */
+}
+
+.btn-voltar-jogo {
+    background: transparent; box-shadow: none; border: 1px solid var(--border-color); color: var(--text-dark); margin-top: 20px; font-size: 1rem; padding: 15px; position: relative; z-index: 1001; width: 100%; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s;
+}
+.btn-voltar-jogo:hover { background: #f3f4f6; }
+
+@keyframes floatAvatar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
