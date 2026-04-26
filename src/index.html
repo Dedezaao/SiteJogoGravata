@@ -17,10 +17,16 @@
     </header>
 
     <div id="tela-inicio" class="tela ativa card">
-        <p style="color: var(--text-muted); margin-bottom: 25px; text-align: center; font-weight: 600;">Selecione seu time e ajude a abrir a mala premiada!</p>
+        <p style="color: var(--text-dark); margin-bottom: 25px; text-align: center; font-weight: 600;">Selecione seu time e ajude a abrir a mala premiada!</p>
         
-        <button class="btn-padrinhos" onclick="escolherTime('arrecadado_padrinhos')">🧔 Time Padrinhos</button>
-        <button class="btn-madrinhas" onclick="escolherTime('arrecadado_madrinhas')">👠 Time Madrinhas</button>
+        <button class="btn-padrinhos" onclick="escolherTime('arrecadado_padrinhos')"> Time Padrinhos</button>
+        <button class="btn-madrinhas" onclick="escolherTime('arrecadado_madrinhas')"> Time Madrinhas</button>
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <button onclick="acessarAdmin()" style="background: transparent; border: none; color: var(--sage-green); font-size: 0.8rem; text-decoration: underline; cursor: pointer;">Painel Admin</button>
+            <span style="color: var(--text-dark); margin: 0 10px;">|</span>
+            <button onclick="acessarPlacar()" style="background: transparent; border: none; color: var(--sage-green); font-size: 0.8rem; text-decoration: underline; cursor: pointer;">Placar Competição</button>
+        </div>
     </div>
 
     <div id="tela-jogo" class="tela card">
@@ -41,6 +47,42 @@
         <button onclick="voltarInicio()" style="background: transparent; box-shadow: none; border: 1px solid var(--glass-border); color: var(--text-muted); margin-top: 25px; font-size: 1rem; padding: 15px;">Voltar</button>
         
         <div id="mensagem"></div>
+
+        <div id="modal-espera" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3 style="color: var(--sage-green); text-align: center;">Aguarde a Autorização</h3>
+                <p style="text-align: center; color: var(--text-dark);">Os noivos ainda não liberaram as tentativas. Volte em breve!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="tela-admin" class="tela card">
+        <h2 style="font-size: 1.5rem; font-weight: 600; margin-top: 0; margin-bottom: 20px; text-align: center; color: var(--sage-green);">Painel Admin</h2>
+        <div id="admin-info" style="text-align: center; font-weight: 500;">
+            <p><strong>Padrinhos:</strong> R$ <span id="admin-padrinhos">0</span></p>
+            <p><strong>Madrinhas:</strong> R$ <span id="admin-madrinhas">0</span></p>
+            <p><strong>Total:</strong> R$ <span id="admin-total">0</span></p>
+            <p><strong>Senha Mala 1:</strong> <span id="admin-senha1">N/A</span></p>
+            <p><strong>Senha Mala 2:</strong> <span id="admin-senha2">N/A</span></p>
+            <div style="margin-top: 30px;">
+                <p id="status-text" style="font-size: 1.2rem; font-weight: 600; margin-bottom: 20px;">STATUS: CARREGANDO...</p>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-liberado">
+                    <span class="slider"></span>
+                </label>
+                <p style="font-size: 0.8rem; color: var(--text-dark); margin-top: 10px;">Deslize para liberar/bloquear tentativas</p>
+            </div>
+        </div>
+        <button onclick="voltarInicio()" style="background: transparent; box-shadow: none; border: 1px solid var(--border-color); color: var(--text-dark); margin-top: 25px; font-size: 1rem; padding: 15px;">Voltar</button>
+    </div>
+
+    <div id="tela-placar" class="tela card">
+        <h2 style="font-size: 1.5rem; font-weight: 600; margin-top: 0; margin-bottom: 20px; text-align: center; color: var(--sage-green);">Placar da Competição</h2>
+        <div class="placar-container">
+            <div class="barra" id="barra-padrinhos" data-label="Padrinhos" style="height: 50%;"></div>
+            <div class="barra" id="barra-madrinhas" data-label="Madrinhas" style="height: 50%;"></div>
+        </div>
+        <button onclick="voltarInicio()" style="background: transparent; box-shadow: none; border: 1px solid var(--border-color); color: var(--text-dark); margin-top: 25px; font-size: 1rem; padding: 15px;">Voltar</button>
     </div>
 </div>
 
