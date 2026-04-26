@@ -11,42 +11,51 @@
 
 <div class="container">
     
-    <header class="wedding-header card ativa">
-        <h1 class="title-main">A Gravata</h1>
-        <p class="subtitle">Lua de Mel Gamificada</p>
+    <header class="wedding-header card ativa" style="background: transparent; border: none; box-shadow: none; padding-bottom: 0;">
+        <h1 class="title-main" style="font-size: 2.5rem; color: var(--sage-dark);">ABRA A MALA </h1>
+        <p class="subtitle" style="font-size: 0.9rem; letter-spacing: 2px;">Essa mala vai nos levar até o Chile</p>
     </header>
 
-    <div id="tela-inicio" class="tela ativa card">
-        <p style="color: var(--text-dark); margin-bottom: 25px; text-align: center; font-weight: 600;">Selecione seu time e ajude a abrir a mala premiada!</p>
+    <div id="tela-inicio" class="tela ativa card" style="margin-top: 10px;">
+        <p style="color: var(--text-dark); margin-bottom: 25px; text-align: center; font-weight: 600;">Selecione seu time e ajude a destrancar nossa viagem!</p>
         
-        <button class="btn-padrinhos" onclick="escolherTime('arrecadado_padrinhos')"> Time Padrinhos</button>
-        <button class="btn-madrinhas" onclick="escolherTime('arrecadado_madrinhas')"> Time Madrinhas</button>
+        <button class="btn-padrinhos btn-glow" onclick="escolherTime('arrecadado_padrinhos')">
+            <span style="font-size: 1.5rem; margin-right: 10px;">🤵🏻‍♂️</span> Time Padrinhos
+        </button>
+        <button class="btn-madrinhas btn-glow" onclick="escolherTime('arrecadado_madrinhas')">
+            <span style="font-size: 1.5rem; margin-right: 10px;">💃🏻</span> Time Madrinhas
+        </button>
         
         <div style="margin-top: 30px; text-align: center;">
-            <button onclick="acessarAdmin()" style="background: transparent; border: none; color: var(--sage-green); font-size: 0.8rem; text-decoration: underline; cursor: pointer;">Painel Admin</button>
+            <button onclick="acessarAdmin()" style="background: transparent; border: none; color: var(--sage-green); font-size: 0.8rem; text-decoration: underline; cursor: pointer; display: inline-block; width: auto; padding: 5px;">Painel Admin</button>
             <span style="color: var(--text-dark); margin: 0 10px;">|</span>
-            <button onclick="acessarPlacar()" style="background: transparent; border: none; color: var(--sage-green); font-size: 0.8rem; text-decoration: underline; cursor: pointer;">Placar Competição</button>
+            <button onclick="acessarPlacar()" style="background: transparent; border: none; color: var(--sage-green); font-size: 0.8rem; text-decoration: underline; cursor: pointer; display: inline-block; width: auto; padding: 5px;">Placar Competição</button>
         </div>
     </div>
 
     <div id="tela-jogo" class="tela card">
-        <h2 id="titulo-time" style="font-size: 2rem; font-weight: 800; margin-top: 0; margin-bottom: 35px; text-align: center; color: var(--gold-polish);"></h2>
         
-        <div class="input-group">
+        <div class="team-header-container">
+            <span id="avatar-time-jogo" class="team-avatar-large">🤵🏻‍♂️</span>
+            <h2 id="titulo-time" style="font-size: 2rem; font-weight: 800; margin: 10px 0 5px 0; text-align: center; color: var(--gold-polish);">Time Padrinhos</h2>
+            <div class="mini-placar-badge" id="badge-status-batalha">
+                <span id="mini-placar-status" style="font-weight: 900;">Analisando batalha... ⚔️</span>
+            </div>
+        </div>
+        
+        <div class="input-group" style="margin-top: 30px;">
             <label for="input-token">Código da Ficha (4 Caracteres)</label>
-            <input type="text" id="input-token" placeholder="AA11" autocomplete="off" maxlength="4">
+            <input type="text" id="input-token" placeholder="AA11" autocomplete="off" maxlength="4" class="input-game">
         </div>
         
         <div class="input-group">
-            <label for="input-senha">Senha da Mala (3 Números)</label>
-            <input type="text" id="input-senha" placeholder="000" maxlength="3" autocomplete="off" inputmode="numeric">
+            <label for="input-senha">Combinação da Mala</label>
+            <input type="text" id="input-senha" placeholder="0 0 0" maxlength="3" autocomplete="off" inputmode="numeric" class="input-game input-cofre">
         </div>
         
-        <button id="btn-tentar" class="btn-acao">💰 TENTAR ABRIR! 🔓</button>
+        <button id="btn-tentar" class="btn-acao btn-glow">💰 TENTAR ABRIR! 🔓</button>
         
-        <button onclick="voltarInicio()" style="background: transparent; box-shadow: none; border: 1px solid var(--glass-border); color: var(--text-muted); margin-top: 25px; font-size: 1rem; padding: 15px;">Voltar</button>
-        
-        <div id="mensagem"></div>
+        <button onclick="voltarInicio()" class="btn-voltar-jogo">VOLTAR</button>
 
         <div id="modal-espera" class="modal" style="display: none;">
             <div class="modal-content">
@@ -77,12 +86,56 @@
     </div>
 
     <div id="tela-placar" class="tela card">
-        <h2 style="font-size: 1.5rem; font-weight: 600; margin-top: 0; margin-bottom: 20px; text-align: center; color: var(--sage-green);">Placar da Competição</h2>
-        <div class="placar-container">
-            <div class="barra" id="barra-padrinhos" data-label="Padrinhos" style="height: 50%;"></div>
-            <div class="barra" id="barra-madrinhas" data-label="Madrinhas" style="height: 50%;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-top: 0; margin-bottom: 30px; text-align: center; color: var(--gold-polish); letter-spacing: 2px;">BATALHA ÉPICA</h2>
+        
+        <div class="arena-batalha">
+            <div class="competidor" id="avatar-padrinhos">
+                <div class="coroa">👑</div>
+                <div class="emoji-avatar">🤵🏻‍♂️</div>
+                <span class="nome-time">Padrinhos</span>
+            </div>
+            
+            <div class="vs-badge">VS</div>
+            
+            <div class="competidor" id="avatar-madrinhas">
+                <div class="coroa">👑</div>
+                <div class="emoji-avatar">💃🏻</div>
+                <span class="nome-time">Madrinhas</span>
+            </div>
         </div>
-        <button onclick="voltarInicio()" style="background: transparent; box-shadow: none; border: 1px solid var(--border-color); color: var(--text-dark); margin-top: 25px; font-size: 1rem; padding: 15px;">Voltar</button>
+
+        <div class="tug-of-war-container">
+            <div class="bar-padrinhos" id="bar-padrinhos" style="width: 50%;"></div>
+            <div class="bar-madrinhas" id="bar-madrinhas" style="width: 50%;"></div>
+        </div>
+        
+        <div class="placar-valores">
+            <span id="porcentagem-padrinhos" style="color: var(--sage-green);">50%</span>
+            <span id="porcentagem-madrinhas" style="color: var(--blue-grey);">50%</span>
+        </div>
+
+        <button onclick="voltarInicio()" style="background: transparent; box-shadow: none; border: 1px solid var(--border-color); color: var(--text-dark); margin-top: 35px; font-size: 1rem; padding: 15px;">Voltar</button>
+    </div>
+</div>
+
+<div id="modal-resultado" class="modal-premium">
+    <div class="modal-box">
+        <div id="fase-suspense" class="fase-container ativa">
+            <div class="lock-icon" id="cadeado-animado">
+                <div class="shackle"></div>
+                <div class="lock-body">
+                    <div class="keyhole"></div>
+                </div>
+            </div>
+            <p class="modal-texto pulse-text">Testando a combinação...</p>
+        </div>
+        
+        <div id="fase-resultado" class="fase-container">
+            <div id="icone-resultado" class="icon-result"></div>
+            <h2 id="titulo-resultado"></h2>
+            <p id="texto-resultado" class="modal-texto"></p>
+            <button class="btn-fechar-modal" onclick="fecharModalResultado()">CONTINUAR</button>
+        </div>
     </div>
 </div>
 
