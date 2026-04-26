@@ -1,0 +1,272 @@
+/* style.css - CASAR.COM EDITION (SAGE & CREAM) */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Paleta Oficial extraída do site */
+    --bg-cream: #fbfaf8; /* Off-white texturizado */
+    --sage-green: #8b9d83; /* O verde da fonte e da bolinha */
+    --sage-dark: #6e8066; /* Verde um pouco mais escuro para hover */
+    --blue-grey: #879bb0; /* O azulzinho da data */
+    --text-dark: #4a4a4a; /* Cinza chumbo para leitura fácil */
+    --text-light: #ffffff;
+    --border-color: #e5e5e5;
+    
+    /* Cores de Feedback */
+    --money-green: #4CAF50;
+    --error-red: #e57373;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    margin: 0; padding: 0; 
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-cream);
+    /* Um gradiente radial muito suave para simular iluminação central e textura de papel */
+    background-image: radial-gradient(circle at center, #ffffff 0%, #fbfaf8 100%);
+    color: var(--text-dark);
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    min-height: 100vh;
+    padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom) 20px;
+    overflow-x: hidden; /* Evita rolagem horizontal com a animação do dinheiro */
+}
+
+/* 2. Container e Estrutura Limpa */
+.container { 
+    width: 100%; max-width: 420px; 
+    display: flex; flex-direction: column; align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 35px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Sombra quase imperceptível, super elegante */
+    transition: transform 0.3s ease;
+}
+
+/* 3. Cabeçalho Minimalista */
+.wedding-header {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.title-main { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem; font-weight: 300;
+    color: var(--sage-green);
+    margin: 0;
+    letter-spacing: 6px; /* Muito espaçamento para dar o ar chic */
+    text-transform: uppercase;
+}
+
+.subtitle {
+    color: var(--blue-grey);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* 4. Telas */
+.tela { display: none; width: 100%; }
+.tela.ativa { display: block; animation: fadeIn 0.5s ease-out; }
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(15px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* 5. Inputs (Linhas finas, sem blocos escuros) */
+.input-group { margin-bottom: 25px; text-align: center; }
+
+label { 
+    color: var(--sage-green); 
+    font-size: 0.75rem; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    display: block;
+}
+
+input {
+    width: 100%; padding: 15px 5px; margin-top: 5px;
+    border: none;
+    border-bottom: 2px solid var(--border-color); /* Apenas uma linha embaixo */
+    background-color: transparent;
+    color: var(--text-dark); 
+    font-size: 1.8rem; font-weight: 400; text-align: center;
+    transition: 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input:focus { 
+    outline: none; 
+    border-bottom-color: var(--sage-green); 
+}
+
+input#input-token { text-transform: uppercase; letter-spacing: 8px; }
+input#input-senha { font-size: 2.5rem; letter-spacing: 12px; color: var(--sage-green); }
+
+/* 6. Botões Elegantes */
+button {
+    width: 100%; padding: 18px; margin: 10px 0;
+    border-radius: 50px; /* Bordas bem arredondadas */
+    border: 1px solid transparent;
+    font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+    cursor: pointer; transition: 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button:active:not(:disabled) { transform: scale(0.97); }
+
+.btn-padrinhos, .btn-madrinhas { 
+    background-color: var(--sage-green);
+    color: white;
+}
+
+.btn-padrinhos:hover, .btn-madrinhas:hover { background-color: var(--sage-dark); }
+
+.btn-acao { 
+    background-color: var(--text-dark);
+    color: white;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.btn-acao:disabled { background: #d1d5db; color: #9ca3af; box-shadow: none; cursor: not-allowed; }
+
+/* 7. Feedback de Mensagens */
+#mensagem { 
+    margin-top: 25px; padding: 15px; border-radius: 8px;
+    font-weight: 500; font-size: 0.9rem; text-align: center;
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+    display: none; 
+}
+
+/* Animação de Suspense (Mais suave e chic) */
+.mala-tremendo { pointer-events: none; opacity: 0.7; transition: 0.3s; }
+
+
+/* =========================================
+   A MÁGICA: CHUVA DE DINHEIRO NO FUNDO
+   ========================================= */
+.money-float {
+    position: fixed;
+    color: var(--money-green);
+    font-weight: 600;
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    pointer-events: none;
+    z-index: 1; /* Fica atrás dos cartões (z-index 10) */
+    opacity: 0;
+    animation: flutuarDinheiro 2.5s ease-out forwards;
+}
+
+@keyframes flutuarDinheiro {
+    0% { transform: translateY(0) scale(0.8); opacity: 1; }
+    100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+}
+
+/* Modal Styles */
+.modal {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+    border-radius: 12px;
+}
+
+.modal-content {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Placar Styles */
+.placar-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 200px;
+    margin: 20px 0;
+}
+
+.barra {
+    width: 60px;
+    background-color: var(--sage-green);
+    border-radius: 8px 8px 0 0;
+    transition: height 0.5s ease;
+    position: relative;
+}
+
+.barra::after {
+    content: attr(data-label);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--error-red);
+    transition: 0.4s;
+    border-radius: 40px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider {
+    background-color: var(--sage-green);
+}
+
+input:checked + .slider:before {
+    transform: translateX(40px);
+}
