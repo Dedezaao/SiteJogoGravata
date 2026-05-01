@@ -44,15 +44,18 @@
         </div>
         
         <div class="input-group" style="margin-top: 30px;">
-            <label for="input-token">Código da Ficha (4 Caracteres)</label>
-            <input type="text" id="input-token" placeholder="AA11" autocomplete="off" maxlength="4" class="input-game">
+            <label for="input-token">Seu Acesso (4 letras/números)</label>
+            <input type="text" id="input-token" placeholder="Seu Acesso" autocomplete="off" maxlength="4" inputmode="text" class="input-game">
         </div>
         
         <div class="input-group">
-            <label for="input-senha">Combinação da Mala</label>
+            <label for="input-senha">Senha da Mala</label>
             <input type="text" id="input-senha" placeholder="0 0 0" maxlength="3" autocomplete="off" inputmode="numeric" class="input-game input-cofre">
         </div>
         
+        <!-- Local onde os erros amigáveis vão aparecer -->
+        <p id="msg-erro" style="color: var(--error-red); font-size: 0.85rem; font-weight: bold; text-align: center; display: none; margin-top: -10px; margin-bottom: 15px; animation: fadeIn 0.3s ease;"></p>
+
         <button id="btn-tentar" class="btn-acao btn-glow">💰 TENTAR ABRIR! 🔓</button>
         
         <button onclick="voltarInicio()" class="btn-voltar-jogo">VOLTAR</button>
