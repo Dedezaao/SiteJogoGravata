@@ -1,9 +1,9 @@
-.env
+.env/
 
-.gitattributes
+.gitattributes/
 
-.vscode
+.vscode/
 
-LOG_ATUALIZACAO.md
+LOG_ATUALIZACAO.md/
 
-LOG_CORRECAO.md
+LOG_CORRECAO.md/
