@@ -1,7 +1,7 @@
 // script.js - DEFINITIVE WEDDING EDITION (UX/UI OTIMIZADO)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getFirestore, doc, getDoc, updateDoc, increment, onSnapshot } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-import confetti from 'https://cdn.skypack.dev/canvas-confetti'; // API DE CONFETES PREMIUM
+import confetti from 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.module.js'; // API DE CONFETES
 
 // SUAS CHAVES DO FIREBASE AQUI
 const firebaseConfig = {

@@ -1,9 +1,7 @@
-.env/
-
-.gitattributes/
-
+.env
+.gitattributes
 .vscode/
-
-LOG_ATUALIZACAO.md/
-
-LOG_CORRECAO.md/
+LOG_ATUALIZACAO.md
+LOG_CORRECAO.md
+node_modules/
+*.log
